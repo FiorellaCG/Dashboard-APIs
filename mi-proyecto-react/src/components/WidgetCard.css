@@ -1,0 +1,137 @@
+.widget-card {
+  background-color: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  color: #1E293B;
+  flex: 1 1 320px;
+}
+
+.widget-title {
+  margin-top: 0;
+  color: #1E293B;
+  margin-bottom: 8px;
+}
+
+.widget-type {
+  color: #64748B;
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+.widget-controls {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.widget-input {
+  flex: 1;
+  padding: 10px;
+  background-color: #F8FAFC;
+  border: 1px solid #CBD5E1;
+  border-radius: 8px;
+  color: #1E293B;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.widget-input::placeholder {
+  color: #64748B;
+}
+
+.widget-input:focus {
+  border-color: #6366F1;
+}
+
+.btn-consultar {
+  padding: 10px 15px;
+  background-color: #6366F1;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+
+.btn-consultar:hover {
+  background-color: #4F46E5;
+}
+
+.btn-consultar:disabled {
+  background-color: #E2E8F0;
+  color: #94A3B8;
+  cursor: not-allowed;
+}
+
+.widget-error {
+  color: #EF4444;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.chart-container {
+  height: 250px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.widget-empty-state {
+  color: #64748B;
+  font-size: 14px;
+  text-align: center;
+  padding: 20px;
+  background-color: #F8FAFC;
+  border-radius: 8px;
+  border: 1px dashed #CBD5E1;
+}
+
+.widget-history-table {
+  margin-bottom: 15px;
+}
+
+.widget-history-table h4 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #1E293B;
+}
+
+.widget-history-table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.widget-history-table th,
+.widget-history-table td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #E2E8F0;
+  color: #334155;
+}
+
+.widget-history-table th {
+  color: #64748B;
+  font-weight: 600;
+  background-color: #F8FAFC;
+}
+
+.btn-limpiar {
+  padding: 6px 12px;
+  background-color: transparent;
+  color: #64748B;
+  border: 1px solid #CBD5E1;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: all 0.2s;
+}
+
+.btn-limpiar:hover {
+  background-color: #F1F5F9;
+  color: #1E293B;
+  border-color: #94A3B8;
+}

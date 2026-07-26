@@ -1,0 +1,219 @@
+/* ── Layout ──────────────────────────────────────────── */
+.twofa-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 40px 20px;
+  background-color: #F8FAFC;
+}
+
+.twofa-card {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 14px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  padding: 2.5rem 2rem;
+  width: 100%;
+  max-width: 440px;
+  color: #1E293B;
+  text-align: center;
+}
+
+/* Variante más ancha para el paso del QR */
+.twofa-card--wide {
+  max-width: 540px;
+}
+
+/* ── Íconos decorativos ──────────────────────────────── */
+.twofa-header-icon,
+.twofa-success-icon {
+  font-size: 3rem;
+  margin-bottom: 12px;
+}
+
+/* ── Títulos ─────────────────────────────────────────── */
+.twofa-card h1 {
+  margin: 0 0 12px;
+  font-size: 1.5rem;
+  color: #6366F1;
+}
+
+.twofa-desc {
+  font-size: 14px;
+  color: #64748B;
+  line-height: 1.6;
+  margin: 0 0 24px;
+}
+
+/* ── Error ───────────────────────────────────────────── */
+.twofa-error {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: #EF4444;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+
+/* ── QR ──────────────────────────────────────────────── */
+.twofa-qr-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.twofa-qr-img {
+  width: 200px;
+  height: 200px;
+  border: 3px solid #6366F1;
+  border-radius: 12px;
+  padding: 8px;
+  background: #fff;
+}
+
+/* ── Secreto manual ──────────────────────────────────── */
+.twofa-manual-section {
+  background: #F1F5F9;
+  border: 1px solid #E2E8F0;
+  border-radius: 10px;
+  padding: 14px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.twofa-manual-label {
+  font-size: 13px;
+  color: #64748B;
+  margin: 0 0 10px;
+  line-height: 1.5;
+}
+
+.twofa-secret-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.twofa-secret-text {
+  font-size: 13px;
+  font-family: 'Courier New', monospace;
+  color: #1E293B;
+  background: #E2E8F0;
+  padding: 6px 10px;
+  border-radius: 6px;
+  word-break: break-all;
+  flex: 1;
+  letter-spacing: 0.08rem;
+}
+
+.twofa-copy-btn {
+  background: none;
+  border: 1px solid #CBD5E1;
+  color: #64748B;
+  font-size: 12px;
+  border-radius: 6px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+  white-space: nowrap;
+}
+
+.twofa-copy-btn:hover {
+  background-color: #6366F1;
+  color: #fff;
+  border-color: #6366F1;
+}
+
+/* ── Divisor ─────────────────────────────────────────── */
+.twofa-divider {
+  height: 1px;
+  background: #E2E8F0;
+  margin: 20px 0;
+}
+
+.twofa-confirm-label {
+  font-size: 14px;
+  color: #64748B;
+  margin: 0 0 14px;
+}
+
+/* ── Formulario y OTP ────────────────────────────────── */
+.twofa-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+
+.twofa-otp-input {
+  width: 100%;
+  padding: 14px;
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 0.5rem;
+  color: #6366F1;
+  background: #F8FAFC;
+  border: 2px solid #CBD5E1;
+  border-radius: 10px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
+}
+
+.twofa-otp-input:focus {
+  border-color: #6366F1;
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+}
+
+.twofa-otp-input::placeholder {
+  color: #CBD5E1;
+  letter-spacing: 0.5rem;
+}
+
+/* ── Botones ─────────────────────────────────────────── */
+.twofa-btn-primary {
+  width: 100%;
+  padding: 12px;
+  background-color: #6366F1;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+  margin-bottom: 4px;
+}
+
+.twofa-btn-primary:hover:not(:disabled) {
+  background-color: #4F46E5;
+}
+
+.twofa-btn-primary:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.twofa-btn-primary:disabled {
+  background-color: #A5B4FC;
+  cursor: not-allowed;
+}
+
+.twofa-btn-link {
+  background: none;
+  border: none;
+  color: #64748B;
+  font-size: 13px;
+  cursor: pointer;
+  padding: 8px 0;
+  transition: color 0.2s;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.twofa-btn-link:hover {
+  color: #6366F1;
+}

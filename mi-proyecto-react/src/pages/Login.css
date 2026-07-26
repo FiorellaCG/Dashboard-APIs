@@ -1,0 +1,155 @@
+/* ── Contenedor y tarjeta ───────────────────────────── */
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  background-color: #F8FAFC;
+}
+
+.auth-card {
+  background: #FFFFFF;
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  color: #1E293B;
+  border: 1px solid #E2E8F0;
+}
+
+.auth-card h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #6366F1;
+}
+
+/* ── Error ──────────────────────────────────────────── */
+.auth-error {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: #EF4444;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* ── Grupos de formulario ───────────────────────────── */
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: #64748B;
+  font-size: 14px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  background-color: #F8FAFC;
+  border: 1px solid #CBD5E1;
+  color: #1E293B;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+}
+
+.form-group input::placeholder {
+  color: #94A3B8;
+}
+
+.form-group input:focus {
+  border-color: #6366F1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+/* ── Botón principal ────────────────────────────────── */
+.auth-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #6366F1;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.auth-button:hover {
+  background-color: #4F46E5;
+}
+
+.auth-button:active {
+  transform: scale(0.98);
+}
+
+/* ── Footer / link ──────────────────────────────────── */
+.auth-footer {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 14px;
+  color: #64748B;
+}
+
+.auth-footer a {
+  color: #6366F1;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.auth-footer a:hover {
+  color: #4F46E5;
+}
+
+/* Botón como link (para "Volver") */
+.link-button {
+  background: none;
+  border: none;
+  color: #6366F1;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.2s;
+}
+
+.link-button:hover {
+  color: #4F46E5;
+}
+
+/* ── Sección 2FA ────────────────────────────────────── */
+.two-fa-icon {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.two-fa-hint {
+  font-size: 14px;
+  color: #64748B;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+/* Input OTP centrado y grande */
+.input-otp {
+  text-align: center !important;
+  font-size: 1.5rem !important;
+  letter-spacing: 0.4rem !important;
+  font-weight: 700 !important;
+  color: #6366F1 !important;
+}
