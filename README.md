@@ -1,5 +1,5 @@
 [README.md](https://github.com/user-attachments/files/30382702/README.md)
-# Dashboard APIs — Grupo 3
+# Dashboard APIs
 
 Dashboard que consume APIs públicas externas (World Bank, OpenWeather, REST Countries vía `countries.dev`) con autenticación de usuarios, 2FA (TOTP) y visualización de datos con gráficas.
 
