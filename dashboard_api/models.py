@@ -45,9 +45,22 @@ class Autenticacion2FA(models.Model):
         db_table = 'autenticacion_2fa'
 
 
+class TipoTransaccion(models.Model):
+    codigo = models.CharField(primary_key=True, max_length=10)
+    nombre = models.CharField(max_length=100)
+
+    class Meta:
+        managed = False
+        db_table = 'tipos_transaccion'
+
+    def __str__(self):
+        return f"{self.codigo} - {self.nombre}"
+
+
 class Bitacora(models.Model):
     id_bitacora = models.AutoField(primary_key=True)
     id_usuario = models.ForeignKey(Usuario, models.DO_NOTHING, db_column='id_usuario', blank=True, null=True)
+    codigo_transaccion = models.ForeignKey(TipoTransaccion, models.DO_NOTHING, db_column='codigo_transaccion', blank=True, null=True)
     accion = models.CharField(max_length=100)
     descripcion = models.CharField(max_length=500, blank=True, null=True)
     fecha = models.DateTimeField(auto_now_add=True)

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import widgetService from '../services/widgetService';
+import { getMiPanel } from '../services/panelService';
 import WidgetCard from '../components/WidgetCard';
 import './Dashboard.css';
 
@@ -15,8 +15,13 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchWidgets = async () => {
       try {
-        const data = await widgetService.getWidgets();
-        setWidgets(data);
+        const data = await getMiPanel();
+        // Filtrar visibles y ordenar por 'orden' (ascendente)
+        const visibleWidgets = data
+          .filter((w) => w.visible === true)
+          .sort((a, b) => (a.orden ?? 0) - (b.orden ?? 0));
+        
+        setWidgets(visibleWidgets);
       } catch (err) {
         setError('Error al cargar los widgets disponibles.');
       } finally {
@@ -32,6 +37,12 @@ const Dashboard = () => {
       <header className="dashboard-header">
         <h2 className="dashboard-title">Dashboard - Bienvenido {usuario?.nombre || usuario?.correo || 'Usuario'}</h2>
         <div className="dashboard-header-actions">
+          <button className="btn-2fa" onClick={() => navigate('/personalizar')}>
+            Personalizar Panel
+          </button>
+          <button className="btn-2fa" onClick={() => navigate('/historial')}>
+            Ver Histórico
+          </button>
           <button className="btn-2fa" onClick={() => navigate('/2fa/configurar')}>
             Configurar 2FA
           </button>
@@ -49,9 +60,16 @@ const Dashboard = () => {
         <p className="dashboard-message">No hay widgets disponibles.</p>
       ) : (
         <div className="widgets-grid">
-          {widgets.map((widget) => (
-            <WidgetCard key={widget.id_widget || widget.id} widget={widget} />
-          ))}
+          {widgets.map((widget) => {
+            // Mapear widget para que tipo_grafico sea tipo_grafico_personalizado
+            const widgetFormatted = {
+              ...widget,
+              tipo_grafico: widget.tipo_grafico_personalizado || widget.tipo_grafico_original
+            };
+            return (
+              <WidgetCard key={widgetFormatted.id_widget || widgetFormatted.id} widget={widgetFormatted} />
+            );
+          })}
         </div>
       )}
     </div>

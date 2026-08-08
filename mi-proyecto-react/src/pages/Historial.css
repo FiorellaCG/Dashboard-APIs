@@ -1,0 +1,246 @@
+.historial-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #FFFFFF;
+}
+
+.historial-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #E2E8F0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.historial-title {
+  margin: 0;
+  color: #1E293B;
+  font-size: 24px;
+}
+
+.historial-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-back {
+  padding: 8px 15px;
+  background-color: #F1F5F9;
+  color: #475569;
+  border: 1px solid #CBD5E1;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.btn-back:hover {
+  background-color: #E2E8F0;
+  color: #1E293B;
+}
+
+/* Filtros Formulario */
+.historial-filter-card {
+  background-color: #FFFFFF;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  border: 1px solid #E2E8F0;
+  margin-bottom: 30px;
+}
+
+.historial-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #475569;
+}
+
+.form-control {
+  padding: 10px 12px;
+  border: 1px solid #CBD5E1;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #1E293B;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  background-color: #FFFFFF;
+}
+
+.form-control:focus {
+  border-color: #6366F1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+
+.btn-buscar {
+  padding: 10px 20px;
+  background-color: #6366F1;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-buscar:hover {
+  background-color: #4F46E5;
+}
+
+.btn-limpiar {
+  padding: 10px 20px;
+  background-color: #F1F5F9;
+  color: #64748B;
+  border: 1px solid #CBD5E1;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-limpiar:hover {
+  background-color: #E2E8F0;
+  color: #334155;
+}
+
+/* Mensajes de Estado */
+.historial-message {
+  text-align: center;
+  padding: 30px;
+  color: #64748B;
+  background-color: #F8FAFC;
+  border-radius: 8px;
+  border: 1px dashed #CBD5E1;
+  font-size: 15px;
+}
+
+.historial-error {
+  padding: 14px;
+  background-color: #FEF2F2;
+  color: #EF4444;
+  border: 1px solid #FCA5A5;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+/* Tabla de Resultados */
+.table-container {
+  overflow-x: auto;
+  background-color: #FFFFFF;
+  border-radius: 12px;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  margin-bottom: 40px;
+}
+
+.historial-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 14px;
+}
+
+.historial-table th {
+  background-color: #F8FAFC;
+  color: #475569;
+  font-weight: 600;
+  padding: 12px 16px;
+  border-bottom: 1px solid #E2E8F0;
+}
+
+.historial-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #F1F5F9;
+  color: #334155;
+}
+
+.historial-table tbody tr:hover {
+  background-color: #F8FAFC;
+}
+
+/* Sección de Estadísticas */
+.estadisticas-section {
+  margin-top: 30px;
+}
+
+.estadisticas-section h3 {
+  color: #1E293B;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.estadisticas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.estadistica-card {
+  background-color: #FFFFFF;
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.estadistica-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #6366F1;
+  margin: 0 0 15px 0;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #EEF2FF;
+}
+
+.estadistica-details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 14px;
+}
+
+.estadistica-item {
+  display: flex;
+  justify-content: space-between;
+  color: #475569;
+}
+
+.estadistica-item span:last-child {
+  font-weight: 600;
+  color: #1E293B;
+}

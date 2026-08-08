@@ -3,6 +3,7 @@ from rest_framework_simplejwt.exceptions import AuthenticationFailed
 from rest_framework_simplejwt.tokens import RefreshToken
 import bcrypt
 from .models import Usuario, Rol
+from .services.bitacora_service import registrar_bitacora
 
 class CustomJWTAuthentication(JWTAuthentication):
     def get_user(self, validated_token):
@@ -206,5 +207,12 @@ class VerificarLoginDosFactorView(APIView):
                 {'error': 'Código de verificación incorrecto o expirado.'},
                 status=status.HTTP_401_UNAUTHORIZED
             )
+
+        registrar_bitacora(
+            usuario=usuario,
+            codigo='001',
+            descripcion=f"Inicio de sesion: {usuario.correo}",
+            request=request
+        )
 
         return Response(_generar_tokens(usuario), status=status.HTTP_200_OK)

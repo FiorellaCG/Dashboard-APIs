@@ -12,6 +12,9 @@ class WidgetSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class UsuarioWidgetSerializer(serializers.ModelSerializer):
+    widget_nombre = serializers.ReadOnlyField(source='id_widget.nombre')
+    widget_tipo_grafico = serializers.ReadOnlyField(source='id_widget.tipo_grafico')
+
     class Meta:
         model = UsuarioWidget
         fields = '__all__'

@@ -3,17 +3,17 @@
    Proyecto: Dashboard de conexión a APIs públicas (Grupo 3)
    Motor: SQL Server (T-SQL)
    ============================================================ */
- 
+
 -- Crear la base de datos (ejecutar una sola vez)
 IF NOT EXISTS (SELECT name FROM sys.databases WHERE name = 'DashboardAPIs')
 BEGIN
     CREATE DATABASE DashboardAPIs;
 END
 GO
- 
+
 USE DashboardAPIs;
 GO
- 
+
 /* ============================================================
    TABLA ROLES
    ============================================================ */
@@ -25,7 +25,7 @@ CREATE TABLE dbo.roles (
     descripcion NVARCHAR(255) NULL
 );
 GO
- 
+
 /* ============================================================
    TABLA USUARIOS
    ============================================================ */
@@ -48,7 +48,7 @@ CREATE TABLE dbo.usuarios (
 GO
 CREATE INDEX IX_usuarios_correo ON dbo.usuarios(correo);
 GO
- 
+
 /* ============================================================
    TABLA AUTENTICACION 2FA
    ============================================================ */
@@ -64,25 +64,38 @@ CREATE TABLE dbo.autenticacion_2fa (
     CONSTRAINT FK_2fa_usuarios FOREIGN KEY (id_usuario) REFERENCES dbo.usuarios(id_usuario)
 );
 GO
- 
+
+/* ============================================================
+   TABLA TIPOS_TRANSACCION (catálogo de códigos de bitácora)
+   ============================================================ */
+IF OBJECT_ID('dbo.tipos_transaccion', 'U') IS NOT NULL DROP TABLE dbo.tipos_transaccion;
+GO
+CREATE TABLE dbo.tipos_transaccion (
+    codigo  NVARCHAR(10) PRIMARY KEY,
+    nombre  NVARCHAR(100) NOT NULL
+);
+GO
+
 /* ============================================================
    TABLA BITACORA
    ============================================================ */
 IF OBJECT_ID('dbo.bitacora', 'U') IS NOT NULL DROP TABLE dbo.bitacora;
 GO
 CREATE TABLE dbo.bitacora (
-    id_bitacora     INT IDENTITY(1,1) PRIMARY KEY,
-    id_usuario      INT NULL,
-    accion          NVARCHAR(100) NOT NULL,
-    descripcion     NVARCHAR(500) NULL,
-    fecha           DATETIME2 NOT NULL DEFAULT SYSDATETIME(),
-    ip              NVARCHAR(45) NULL,
-    CONSTRAINT FK_bitacora_usuarios FOREIGN KEY (id_usuario) REFERENCES dbo.usuarios(id_usuario)
+    id_bitacora         INT IDENTITY(1,1) PRIMARY KEY,
+    id_usuario          INT NULL,
+    codigo_transaccion  NVARCHAR(10) NULL,
+    accion              NVARCHAR(100) NOT NULL,
+    descripcion         NVARCHAR(500) NULL,
+    fecha               DATETIME2 NOT NULL DEFAULT SYSDATETIME(),
+    ip                  NVARCHAR(45) NULL,
+    CONSTRAINT FK_bitacora_usuarios FOREIGN KEY (id_usuario) REFERENCES dbo.usuarios(id_usuario),
+    CONSTRAINT FK_bitacora_tipo_transaccion FOREIGN KEY (codigo_transaccion) REFERENCES dbo.tipos_transaccion(codigo)
 );
 GO
 CREATE INDEX IX_bitacora_usuario ON dbo.bitacora(id_usuario);
 GO
- 
+
 /* ============================================================
    TABLA FUENTES DE DATOS (catálogo de APIs externas)
    ============================================================ */
@@ -96,7 +109,7 @@ CREATE TABLE dbo.fuentes_datos (
     activa          BIT NOT NULL DEFAULT 1
 );
 GO
- 
+
 /* ============================================================
    TABLA WIDGETS (catálogo de widgets disponibles)
    ============================================================ */
@@ -113,10 +126,10 @@ CREATE TABLE dbo.widgets (
     CONSTRAINT FK_widgets_fuentes FOREIGN KEY (id_fuente) REFERENCES dbo.fuentes_datos(id_fuente)
 );
 GO
- 
+
 /* ============================================================
    TABLA USUARIO_WIDGET (personalización del panel por usuario)
- 
+
    NOTA DE DISEÑO: se usa un id_usuario_widget propio como PRIMARY KEY
    (en vez de una llave compuesta id_usuario + id_widget) porque Django
    no soporta llaves primarias compuestas de forma nativa. La combinación
@@ -137,7 +150,7 @@ CREATE TABLE dbo.usuario_widget (
     CONSTRAINT FK_uw_widgets FOREIGN KEY (id_widget) REFERENCES dbo.widgets(id_widget)
 );
 GO
- 
+
 /* ============================================================
    TABLA HISTORIAL_CONSULTAS (parámetros de cada consulta a la API)
    ============================================================ */
@@ -156,7 +169,7 @@ CREATE TABLE dbo.historial_consultas (
     CONSTRAINT FK_hc_fuentes FOREIGN KEY (id_fuente) REFERENCES dbo.fuentes_datos(id_fuente)
 );
 GO
- 
+
 /* ============================================================
    TABLA DATOS_API (resultado/caché de las llamadas a las APIs)
    ============================================================ */
@@ -179,20 +192,28 @@ GO
 CREATE INDEX IX_datos_api_pais ON dbo.datos_api(pais);
 CREATE INDEX IX_datos_api_fecha ON dbo.datos_api(fecha_dato);
 GO
- 
+
 /* ============================================================
    DATOS INICIALES (seed data)
    Fuentes de datos y widgets base para que el dashboard funcione
    apenas se crea la base de datos, sin pasos manuales adicionales.
    ============================================================ */
- 
+
 INSERT INTO fuentes_datos (nombre, url_base, tipo_dato, activa)
 VALUES
     ('World Bank', 'https://api.worldbank.org/v2', 'economico', 1),
     ('OpenWeather', 'https://api.openweathermap.org/data/2.5', 'clima', 1),
     ('REST Countries', 'https://countries.dev', 'geografico', 1);
 GO
- 
+
+INSERT INTO tipos_transaccion (codigo, nombre)
+VALUES
+    ('001', 'Ingreso a la aplicacion'),
+    ('002', 'Modificacion de informacion'),
+    ('003', 'Consulta de informacion'),
+    ('004', 'Eliminacion');
+GO
+
 INSERT INTO widgets (nombre, tipo_grafico, id_fuente, descripcion, activo)
 VALUES
     ('PIB por país', 'barras',
@@ -205,5 +226,5 @@ VALUES
         (SELECT id_fuente FROM fuentes_datos WHERE nombre = 'REST Countries'),
         'Población total del país seleccionado', 1);
 GO
- 
+
 PRINT 'Base de datos, tablas y datos iniciales creados correctamente.';

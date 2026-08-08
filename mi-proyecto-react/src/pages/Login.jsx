@@ -23,7 +23,7 @@ const Login = () => {
     try {
       const data = await login(correo, password);
 
-      if (data?.requiere_2fa) {
+      if (data && (data.requiere_2fa || data.requiere_2fa === 'true')) {
         // El usuario tiene 2FA activado → mostrar segundo formulario
         setCorreo2FA(data.correo || correo);
         setMostrando2FA(true);

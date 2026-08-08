@@ -85,26 +85,13 @@ const ConfigurarDosFactor = () => {
       <div className="twofa-container">
         <div className="twofa-card twofa-card--wide">
           <div className="twofa-header-icon">📱</div>
-          <h1>Escanea el código QR</h1>
+          <h1>Configurar 2FA</h1>
           <p className="twofa-desc">
-            Abre tu app de autenticación y escanea la imagen de abajo.
+            Ingresa la siguiente clave secreta en tu app de autenticación (Google Authenticator, Authy, etc.):
           </p>
-
-          {/* QR */}
-          <div className="twofa-qr-wrapper">
-            <img
-              src={`data:image/png;base64,${qrBase64}`}
-              alt="Código QR para 2FA"
-              className="twofa-qr-img"
-            />
-          </div>
 
           {/* Secreto manual */}
           <div className="twofa-manual-section">
-            <p className="twofa-manual-label">
-              ¿No puedes escanear el QR? Ingresa este código manualmente en tu
-              app de autenticación:
-            </p>
             <div className="twofa-secret-box">
               <code className="twofa-secret-text">{secretoManual}</code>
               <button
