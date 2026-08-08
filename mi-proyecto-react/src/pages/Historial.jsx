@@ -116,13 +116,13 @@ const Historial = () => {
             </div>
 
             <div className="form-group">
-              <label htmlFor="palabra_clave">Palabra Clave</label>
+              <label htmlFor="palabra_clave">País</label>
               <input
                 type="text"
                 id="palabra_clave"
                 name="palabra_clave"
                 className="form-control"
-                placeholder="Buscar por palabra clave..."
+                placeholder="Buscar por país..."
                 value={filtros.palabra_clave}
                 onChange={handleChange}
               />
